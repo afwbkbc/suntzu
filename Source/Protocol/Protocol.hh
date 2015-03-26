@@ -8,6 +8,8 @@ class Protocol {
 public:
 	Protocol();
 	virtual ~Protocol();
+
+	int Connect()
 };
 
 #endif /* PROTOCOL_HH_ */

@@ -2,6 +2,7 @@
 #define ARGUMENTPARSER_HH_
 
 #include <string>
+#include <tclap/CmdLine.h>
 
 namespace utils {
 
@@ -10,34 +11,43 @@ public:
 	ArgumentParser(int argc, char *argv[]);
 	virtual ~ArgumentParser();
 
+	void run();
+
 	enum ARG {
-		LOCAL,
-		SEARCH,
-		HOST,
+		GAME,
 
 		_MAX,
 	};
 	bool getBool(ARG argid);
 	std::string getString(ARG argid);
 
-private:
-	enum TYPE {
+	enum ARGTYPE {
 		BOOL,
 		STRING,
 	};
-	struct ArgMap {
+	struct Arg {
 		ARG id;
-		TYPE type;
+		ARGTYPE type;
 		std::string key;
 		std::string name;
 		std::string description;
 		bool mandatory;
 		void *value;
-	} mArguments[ARG::_MAX] = {
-		{ ARG::LOCAL, TYPE::BOOL, "local", "", "Search game on localhost", true, new bool(true) },
-		{ ARG::SEARCH, TYPE::STRING, "search", "IP Address", "IP Address to search game on", true, new std::string("127.0.0.1") },
-		{ ARG::HOST, TYPE::BOOL, "host", "", "Host the game", true, new bool(false) },
 	};
+
+	void handleArgs(struct Arg *arguments, int len);
+
+	void insertArgs(TCLAP::CmdLine *cmd, TCLAP::Arg **args);
+	TCLAP::Arg ** prepareArgs(struct Arg *arguments, int len);
+	void processArgs(struct Arg *arguments, TCLAP::Arg **args, int len);
+
+private:
+	struct Arg mArguments[ARG::_MAX] = {
+		{ ARG::GAME, ARGTYPE::STRING, "game", "", "Game to play", true, NULL },
+	};
+	TCLAP::CmdLine *mCmd;
+	int mArgc;
+	char **mArgv;
 };
 
 } /* namespace utils */

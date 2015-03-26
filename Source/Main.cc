@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
 #endif
 	SunTzu suntzu(argc, argv);
 
-	return suntzu.Run();
+	return suntzu.run();
 };
 
 
