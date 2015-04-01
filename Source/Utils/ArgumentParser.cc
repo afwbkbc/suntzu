@@ -157,6 +157,8 @@ if (arg->type == ARGTYPE::_argtype) {\
 		return EXIT_FAILURE;
 	}
 
+	gSunTzu->SetGame(game);
+
 	return EXIT_SUCCESS;
 }
 

@@ -13,8 +13,12 @@ add_executable(suntzu
 		Source/UI/Console/Console.cc
 		
 	Source/Game/Game.cc
+		Source/Game/CrossZero.cc
 		Source/Game/Go.cc
 		Source/Game/SMAC.cc
+
+	Source/AI/AI.cc
+		Source/AI/RandomChoice/RandomChoice.cc
 		
 	Source/Core/SunTzu.cc
 

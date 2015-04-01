@@ -1,20 +1,27 @@
-#ifndef SMAC_HH_
-#define SMAC_HH_
+#ifndef CROSSZERO_HH_
+#define CROSSZERO_HH_
 
 #include "Game.hh"
 #include "Utils/ArgumentParser.hh"
 
+#define CZ_X 3
+#define CZ_Y 3
+
 namespace game {
 
-class SMAC : public Game {
+class CrossZero : public Game {
 public:
-	SMAC();
-	virtual ~SMAC();
+	CrossZero();
+	virtual ~CrossZero();
 
 	const std::string getName() {
-		return "smac";
+		return "crosszero";
 	}
 
+	int initWorld();
+	int initAI(AI *ai);
+
+	/*
 	enum ARG {
 		LOCAL = utils::ArgumentParser::ARG::_MAX,
 		SEARCH,
@@ -36,25 +43,24 @@ public:
 		xorlist.push_back(args[ARG::HOST]);
 		cmd->xorAdd( xorlist );
 
-	}
-
-	int initWorld() {
-
-		return EXIT_SUCCESS;
-	}
-	int initAI(AI *ai) {
-
-		return EXIT_SUCCESS;
-	}
+	}*/
 
 private:
+
+	char mField[CZ_X][CZ_Y];
+
+	ai::input_id_t mFieldOutput;
+	ai::input_id_t mPainOutput;
+	ai::output_id_t mMoveInput;
+
+	/*
 	struct utils::ArgumentParser::Arg mArguments[ARG::_MAX] = {
 		{ (utils::ArgumentParser::ARG)ARG::LOCAL, utils::ArgumentParser::ARGTYPE::BOOL, "l", "local", "", "Search game on localhost", true, new bool(true) },
 		{ (utils::ArgumentParser::ARG)ARG::SEARCH, utils::ArgumentParser::ARGTYPE::STRING, "s", "search", "IP Address", "IP Address to search game on", true, new std::string("127.0.0.1") },
 		{ (utils::ArgumentParser::ARG)ARG::HOST, utils::ArgumentParser::ARGTYPE::BOOL, "h", "host", "", "Host the game", true, new bool(false) },
-	};
+	};*/
 
 };
 
 } /* namespace game */
-#endif /* SMAC_HH_ */
+#endif /* CROSSZERO_HH_ */

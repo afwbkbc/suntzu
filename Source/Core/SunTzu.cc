@@ -6,8 +6,11 @@
 
 #include "UI/Console/Console.hh"
 
+#include "Game/CrossZero.hh"
 #include "Game/Go.hh"
 #include "Game/SMAC.hh"
+
+#include "AI/RandomChoice/RandomChoice.hh"
 
 SunTzu *gSunTzu = NULL;
 
@@ -19,6 +22,7 @@ SunTzu::SunTzu(int argc, char *argv[]) {
 	mArgumentParser = new utils::ArgumentParser(argc, argv);
 	mUI = new ui::Console;
 
+	mGames.push_back(new game::CrossZero);
 	mGames.push_back(new game::Go);
 	mGames.push_back(new game::SMAC);
 
@@ -45,13 +49,20 @@ int SunTzu::run() {
 	if ((ret=mArgumentParser->run()) != EXIT_SUCCESS)
 		return ret;
 
-	if (mArgumentParser->getBool(game::SMAC::ARG::HOST))
-		return mUI->FatalError("Game hosting not supported yet.");
+	assert(mGame);
 
-	std::string ip = mArgumentParser->getString(game::SMAC::ARG::SEARCH);
-	std::cout << ip << std::endl;
+	mAI = new ai::RandomChoice;
+
+	mUI->Log("initializing AI \"" + mAI->getName() + "\"");
+	/* ... */
+
+	mUI->Log("initializing game \"" + mGame->getName() + "\"");
+	if ((ret=mGame->initWorld()) != EXIT_SUCCESS)
+		return ret;
+	if ((ret=mGame->initAI(mAI)) != EXIT_SUCCESS)
+		return ret;
 
 
 
-	return EXIT_SUCCESS;
+	return ret;
 }

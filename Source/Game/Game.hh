@@ -2,6 +2,7 @@
 #define GAME_HH_
 
 #include "Utils/ArgumentParser.hh"
+#include "AI/AI.hh"
 
 #include <string>
 
@@ -19,6 +20,9 @@ public:
 		return 0;
 	}
 	virtual void insertArguments(TCLAP::CmdLine *cmd, TCLAP::Arg **args) {};
+
+	virtual int initWorld()=0;
+	virtual int initAI(AI *ai)=0;
 
 private:
 

@@ -13,6 +13,16 @@ public:
 	const std::string getName() {
 		return "go";
 	}
+
+	int initWorld() {
+
+		return EXIT_SUCCESS;
+	}
+	int initAI(AI *ai) {
+
+		return EXIT_SUCCESS;
+	}
+
 };
 
 } /* namespace game */

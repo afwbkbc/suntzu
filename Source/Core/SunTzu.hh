@@ -4,6 +4,7 @@
 #include "Utils/ArgumentParser.hh"
 #include "UI/UI.hh"
 #include "Game/Game.hh"
+#include "AI/AI.hh"
 
 #include <vector>
 
@@ -27,13 +28,22 @@ public:
 	UI *getUI() {
 		return mUI;
 	};
+
+	void SetGame(Game *game) {
+		mGame = game;
+	}
+	Game *GetGame() {
+		return mGame;
+	}
 private:
 
 	utils::ArgumentParser *mArgumentParser;
 	UI *mUI;
 
 	std::vector<Game *> mGames;
+	Game *mGame = NULL;
 
+	AI *mAI;
 };
 
 extern SunTzu *gSunTzu;
