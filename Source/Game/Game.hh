@@ -15,9 +15,10 @@ public:
 	virtual struct utils::ArgumentParser::Arg *getArguments() {
 		return NULL;
 	}
-	virtual int getArgumentsLen() {
+	virtual int getArgumentsMax() {
 		return 0;
 	}
+	virtual void insertArguments(TCLAP::CmdLine *cmd, TCLAP::Arg **args) {};
 
 private:
 

@@ -11,15 +11,15 @@ public:
 	ArgumentParser(int argc, char *argv[]);
 	virtual ~ArgumentParser();
 
-	void run();
+	int run();
 
 	enum ARG {
-		GAME,
+		VERBOSE,
 
 		_MAX,
 	};
-	bool getBool(ARG argid);
-	std::string getString(ARG argid);
+	bool getBool(int argid);
+	std::string getString(int argid);
 
 	enum ARGTYPE {
 		BOOL,
@@ -28,26 +28,28 @@ public:
 	struct Arg {
 		ARG id;
 		ARGTYPE type;
-		std::string key;
+		std::string shortKey;
+		std::string longKey;
 		std::string name;
 		std::string description;
 		bool mandatory;
 		void *value;
 	};
 
-	void handleArgs(struct Arg *arguments, int len);
-
-	void insertArgs(TCLAP::CmdLine *cmd, TCLAP::Arg **args);
 	TCLAP::Arg ** prepareArgs(struct Arg *arguments, int len);
 	void processArgs(struct Arg *arguments, TCLAP::Arg **args, int len);
 
 private:
+
 	struct Arg mArguments[ARG::_MAX] = {
-		{ ARG::GAME, ARGTYPE::STRING, "game", "", "Game to play", true, NULL },
+		{ ARG::VERBOSE, ARGTYPE::BOOL, "v", "verbose", "", "Show more verbose output", true, NULL },
 	};
 	TCLAP::CmdLine *mCmd;
 	int mArgc;
 	char **mArgv;
+
+	struct Arg **mAllArguments = NULL;
+	int mAllArgumentsMax = 0;
 };
 
 } /* namespace utils */

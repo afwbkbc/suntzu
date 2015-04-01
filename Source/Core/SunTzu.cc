@@ -40,15 +40,17 @@ SunTzu::~SunTzu() {
 
 int SunTzu::run() {
 
-	mArgumentParser->run();
+	int ret;
 
-	/*
-	if (mArgumentParser->getBool(utils::ArgumentParser::ARG::HOST))
+	if ((ret=mArgumentParser->run()) != EXIT_SUCCESS)
+		return ret;
+
+	if (mArgumentParser->getBool(game::SMAC::ARG::HOST))
 		return mUI->FatalError("Game hosting not supported yet.");
 
-	std::string ip = mArgumentParser->getString(utils::ArgumentParser::ARG::SEARCH);
+	std::string ip = mArgumentParser->getString(game::SMAC::ARG::SEARCH);
 	std::cout << ip << std::endl;
-*/
+
 
 
 	return EXIT_SUCCESS;
