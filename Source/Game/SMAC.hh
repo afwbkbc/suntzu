@@ -46,6 +46,15 @@ public:
 
 		return EXIT_SUCCESS;
 	}
+	void iterateWorld() {
+
+	}
+	void setInputs(AI *ai) {
+
+	}
+	void getOutputs(AI *ai) {
+
+	}
 
 private:
 	struct utils::ArgumentParser::Arg mArguments[ARG::_MAX] = {

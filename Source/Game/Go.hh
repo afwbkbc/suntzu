@@ -22,6 +22,15 @@ public:
 
 		return EXIT_SUCCESS;
 	}
+	void setInputs(AI *ai) {
+
+	}
+	void getOutputs(AI *ai) {
+
+	}
+	void iterateWorld() {
+
+	}
 
 };
 

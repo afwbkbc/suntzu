@@ -23,6 +23,9 @@ public:
 
 	virtual int initWorld()=0;
 	virtual int initAI(AI *ai)=0;
+	virtual void iterateWorld()=0;
+	virtual void setInputs(AI *ai)=0;
+	virtual void getOutputs(AI *ai)=0;
 
 private:
 

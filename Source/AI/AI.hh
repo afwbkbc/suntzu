@@ -5,14 +5,12 @@
 
 namespace ai {
 
+	typedef float data_t;
 	typedef unsigned char input_id_t;
 	typedef unsigned char output_id_t;
-	enum data_type_t {
-		FLOAT,
-	};
 	enum input_type_t {
 		PERCEPTION,
-		FEELING,
+		JOY,
 	};
 	enum output_type_t {
 		MOTORIC,
@@ -20,13 +18,11 @@ namespace ai {
 
 	struct InputFormat {
 		input_type_t inputType;
-		data_type_t dataType;
 		int dataLen;
 	};
 
 	struct OutputFormat {
 		output_type_t outputType;
-		data_type_t dataType;
 		int dataLen;
 	};
 }
@@ -40,6 +36,9 @@ public:
 
 	virtual ai::input_id_t addInputListener(struct ai::InputFormat &format)=0;
 	virtual ai::output_id_t addOutputGenerator(struct ai::OutputFormat &format)=0;
+	virtual void setInput(ai::input_id_t id, ai::data_t *data)=0;
+	virtual void getOutput(ai::output_id_t id, ai::data_t *data)=0;
+	virtual void iterate()=0;
 };
 
 #endif /* AI_HH_ */

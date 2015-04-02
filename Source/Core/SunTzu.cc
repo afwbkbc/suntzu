@@ -3,6 +3,7 @@
 #include <iostream>
 #include <assert.h>
 #include <cstdlib>
+#include <boost/thread.hpp>
 
 #include "UI/Console/Console.hh"
 
@@ -62,7 +63,20 @@ int SunTzu::run() {
 	if ((ret=mGame->initAI(mAI)) != EXIT_SUCCESS)
 		return ret;
 
+	ai::data_t *data;
 
+	while (true) {
+
+		mGame->setInputs(mAI);
+
+		mAI->iterate();
+
+		mGame->getOutputs(mAI);
+
+		mGame->iterateWorld();
+
+		boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
+	}
 
 	return ret;
 }
