@@ -1,0 +1,7 @@
+SET(CCSD ${CCSD}/Core)
+
+SET(SRC ${SRC}
+
+	${CCSD}/SunTzu.cc
+
+PARENT_SCOPE)

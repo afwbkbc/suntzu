@@ -3,7 +3,27 @@
 
 #include "AI/AI.hh"
 
+#include "Neuron.hh"
+#include "Receptor.hh"
+#include "Motoric.hh"
+
+#include <vector>
+
 namespace ai {
+
+namespace test1 {
+
+struct Input {
+	struct InputFormat format;
+	Receptor **receptors;
+};
+
+struct Output {
+	struct OutputFormat format;
+	Motoric **motorics;
+};
+
+}
 
 class Test1 : public AI {
 public:
@@ -19,6 +39,11 @@ public:
 	void setInput(input_id_t id, data_t *data);
 	void getOutput(output_id_t id, data_t *data);
 	void iterate();
+
+private:
+	std::vector<test1::Neuron *> mNeurons;
+	std::vector<test1::Input *> mInputs;
+	std::vector<test1::Output *> mOutputs;
 };
 
 } /* namespace ai */

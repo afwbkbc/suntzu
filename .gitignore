@@ -1,7 +1,7 @@
-/CMakeFiles
-/Release
-/Makefile
-/CMakeCache.txt
-/cmake_install.cmake
+CMakeFiles
+Makefile
+CMakeCache.txt
+cmake_install.cmake
 /.cproject
 /.project
+/Release

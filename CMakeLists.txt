@@ -1,41 +1,28 @@
 cmake_minimum_required (VERSION 2.6)
-project (suntzu)
-
-SET(CMAKE_MODULE_PATH ".")
 
 SET(EXECUTABLE_OUTPUT_PATH "Release")
+SET(EXECUTABLE_NAME "suntzu")
 
-add_executable(suntzu
+project (${EXECUTABLE_NAME})
 
-	Source/Utils/ArgumentParser.cc
-
-	Source/UI/UI.cc
-		Source/UI/Console/Console.cc
-		
-	Source/Game/Game.cc
-		Source/Game/CrossZero.cc
-		Source/Game/Go.cc
-		Source/Game/SMAC.cc
-
-	Source/AI/AI.cc
-		Source/AI/RandomChoice/RandomChoice.cc
-		Source/AI/Test1/Test1.cc
-		
-	Source/Core/SunTzu.cc
-
-	Source/Main.cc
-)
+SET(CMAKE_MODULE_PATH ".")
+SET( CMAKE_CXX_FLAGS  " -std=c++11 ${CMAKE_CXX_FLAGS} " )	
 
 find_package(Boost REQUIRED COMPONENTS system thread atomic chrono)
 include_directories(${Boost_INCLUDE_DIRS})
-target_link_libraries(suntzu ${Boost_LIBRARIES})
 
 find_package(TCLAP REQUIRED)
 include_directories(${TCLAP_INCLUDE_PATH})
 
-SET( CMAKE_CXX_FLAGS  " -std=c++11 ${CMAKE_CXX_FLAGS} " )	
-
 include_directories(${CMAKE_SOURCE_DIR}/Source)
+
+SET(SRC "")
+SET(CCSD ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_subdirectory(Source)
+
+add_executable(${EXECUTABLE_NAME} ${SRC})
+target_link_libraries(${EXECUTABLE_NAME} ${Boost_LIBRARIES})
 
 # strict
 add_definitions( -Werror )
