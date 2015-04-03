@@ -12,6 +12,7 @@
 #include "Game/SMAC.hh"
 
 #include "AI/RandomChoice/RandomChoice.hh"
+#include "AI/Test1/Test1.hh"
 
 SunTzu *gSunTzu = NULL;
 
@@ -26,6 +27,9 @@ SunTzu::SunTzu(int argc, char *argv[]) {
 	mGames.push_back(new game::CrossZero);
 	mGames.push_back(new game::Go);
 	mGames.push_back(new game::SMAC);
+
+	mAIs.push_back(new ai::RandomChoice);
+	mAIs.push_back(new ai::Test1);
 
 }
 
@@ -51,8 +55,7 @@ int SunTzu::run() {
 		return ret;
 
 	assert(mGame);
-
-	mAI = new ai::RandomChoice;
+	assert(mAI);
 
 	mUI->Log("initializing AI \"" + mAI->getName() + "\"");
 	/* ... */

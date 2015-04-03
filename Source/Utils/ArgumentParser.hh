@@ -14,6 +14,7 @@ public:
 	int run();
 
 	enum ARG {
+		AI,
 		VERBOSE,
 
 		_MAX,
@@ -36,12 +37,10 @@ public:
 		void *value;
 	};
 
-	TCLAP::Arg ** prepareArgs(struct Arg *arguments, int len);
-	void processArgs(struct Arg *arguments, TCLAP::Arg **args, int len);
-
 private:
 
 	struct Arg mArguments[ARG::_MAX] = {
+		{ ARG::AI, ARGTYPE::STRING, "a", "ai", "", "AI engine to use", false, new std::string("randomchoice") },
 		{ ARG::VERBOSE, ARGTYPE::BOOL, "v", "verbose", "", "Show more verbose output", true, NULL },
 	};
 	TCLAP::CmdLine *mCmd;

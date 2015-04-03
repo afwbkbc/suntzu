@@ -25,6 +25,13 @@ public:
 		return mGames.end();
 	};
 
+	std::vector<AI *>::iterator AIsBegin() {
+		return mAIs.begin();
+	};
+	std::vector<AI *>::iterator AIsEnd() {
+		return mAIs.end();
+	};
+
 	UI *getUI() {
 		return mUI;
 	};
@@ -35,6 +42,12 @@ public:
 	Game *GetGame() {
 		return mGame;
 	}
+	void SetAI(AI *ai) {
+		mAI = ai;
+	}
+	AI *GetAI() {
+		return mAI;
+	}
 private:
 
 	utils::ArgumentParser *mArgumentParser;
@@ -43,6 +56,7 @@ private:
 	std::vector<Game *> mGames;
 	Game *mGame = NULL;
 
+	std::vector<AI *> mAIs;
 	AI *mAI;
 };
 

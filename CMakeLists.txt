@@ -19,6 +19,7 @@ add_executable(suntzu
 
 	Source/AI/AI.cc
 		Source/AI/RandomChoice/RandomChoice.cc
+		Source/AI/Test1/Test1.cc
 		
 	Source/Core/SunTzu.cc
 
