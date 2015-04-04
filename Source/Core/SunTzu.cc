@@ -13,6 +13,7 @@
 
 #include "AI/RandomChoice/RandomChoice.hh"
 #include "AI/Test1/Test1.hh"
+#include "AI/Becca/Becca.hh"
 
 SunTzu *gSunTzu = NULL;
 
@@ -30,6 +31,7 @@ SunTzu::SunTzu(int argc, char *argv[]) {
 
 	mAIs.push_back(new ai::RandomChoice);
 	mAIs.push_back(new ai::Test1);
+	mAIs.push_back(new ai::Becca);
 
 }
 
@@ -58,7 +60,7 @@ int SunTzu::run() {
 	assert(mAI);
 
 	mUI->Log("initializing AI \"" + mAI->getName() + "\"");
-	/* ... */
+	mAI->init();
 
 	mUI->Log("initializing game \"" + mGame->getName() + "\"");
 	if ((ret=mGame->initWorld()) != EXIT_SUCCESS)
@@ -80,6 +82,8 @@ int SunTzu::run() {
 
 		boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
 	}
+
+	mAI->shutdown();
 
 	return ret;
 }

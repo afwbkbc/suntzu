@@ -34,6 +34,13 @@ public:
 		return "test1";
 	}
 
+	void init() {
+
+	}
+	void shutdown() {
+
+	}
+
 	input_id_t addInputListener(struct InputFormat &format);
 	output_id_t addOutputGenerator(struct OutputFormat &format);
 	void setInput(input_id_t id, data_t *data);

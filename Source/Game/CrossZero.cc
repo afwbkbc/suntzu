@@ -51,6 +51,7 @@ namespace game {
 
 	char CrossZero::getWinner() {
 		unsigned char i,ii,w,ww;
+		bool draw = true;
 		for (unsigned char y = 0; y < CZ_Y ; y++) {
 			for (unsigned char x = 0; x < CZ_X ; x++) {
 				char c = mField[x][y];
@@ -81,9 +82,14 @@ namespace game {
 							return c;
 					}
 				}
+				else
+					draw = false;
 			}
 		}
-		return ' ';
+		if (draw)
+			return ' ';
+		else
+			return 0;
 	}
 
 	void CrossZero::printField() {
@@ -140,8 +146,8 @@ namespace game {
 
 		this->printField();
 
-		if (this->getWinner() == mMyChar) {
-			std::cout << "You won! Press enter to continue." << std::endl;
+		if (char w = this->getWinner()) {
+			std::cout << (w == mMyChar?"You won":"Draw") << "! Press enter to continue." << std::endl;
 			std::getline(std::cin, move);
 			this->clearField();
 		}
@@ -150,6 +156,11 @@ namespace game {
 
 	void CrossZero::setInputs(AI *ai) {
 		ai::data_t data[CZ_X * CZ_Y];
+
+		for (unsigned char y = 0 ; y < CZ_Y ; y++)
+			for (unsigned char x = 0 ; x < CZ_X ; x++)
+				data[y*CZ_X+x] = mField[x][y] == ' ' ? 0.5f : (mField[x][y] == mAIChar ? 1.0f : 0.0f);
+
 		ai->setInput(mFieldOutput,data);
 
 		if (mAIChar == ' ') {
@@ -168,6 +179,7 @@ namespace game {
 
 	void CrossZero::getOutputs(AI *ai) {
 		ai::data_t data[CZ_X * CZ_Y];
+		memset(data, 0, sizeof(data)); // tmp
 		ai->getOutput(mMoveInput, data);
 
 		ai::data_t val, max;
@@ -192,8 +204,8 @@ namespace game {
 
 		this->printField();
 
-		if (this->getWinner() == mAIChar) {
-			std::cout << "You lost! Press enter to continue." << std::endl;
+		if (char w = this->getWinner()) {
+			std::cout << (w == mAIChar?"You lost":"Draw") << "! Press enter to continue." << std::endl;
 			std::string move;
 			std::getline(std::cin, move);
 			this->clearField();

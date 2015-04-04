@@ -34,6 +34,8 @@ public:
 
 	virtual const std::string getName()=0;
 
+	virtual void init()=0;
+	virtual void shutdown()=0;
 	virtual ai::input_id_t addInputListener(struct ai::InputFormat &format)=0;
 	virtual ai::output_id_t addOutputGenerator(struct ai::OutputFormat &format)=0;
 	virtual void setInput(ai::input_id_t id, ai::data_t *data)=0;

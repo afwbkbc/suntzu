@@ -1,5 +1,6 @@
 SET(CCSD ${CCSD}/AI)
 
+add_subdirectory(Becca)
 add_subdirectory(RandomChoice)
 add_subdirectory(Test1)
 
