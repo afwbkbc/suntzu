@@ -1,2 +1,2 @@
 # suntzu
-Multiplayer AI for Sid Meier's Alpha Centauri(Alien Crossfire)
+Generic AI for playing games
