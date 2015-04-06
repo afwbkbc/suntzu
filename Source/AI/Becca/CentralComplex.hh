@@ -5,6 +5,7 @@
 #include "Spindle.hh"
 #include "MainSpring.hh"
 #include "ArborKey.hh"
+#include "Cable.hh"
 
 #include <cstdlib>
 
@@ -16,10 +17,12 @@ public:
 	CentralComplex();
 	virtual ~CentralComplex();
 
+	void sendActivity(Cable *cable);
 private:
 	Hub *mHub = NULL;
 	Spindle *mSpindle = NULL;
 	MainSpring *mMainSpring = NULL;
+	ArborKey *mArborKey = NULL;
 };
 
 } /* namespace becca */

@@ -4,12 +4,23 @@ namespace ai {
 namespace becca {
 
 CentralComplex::CentralComplex() {
-	// TODO Auto-generated constructor stub
-
+	mHub = new Hub;
+	mSpindle = new Spindle;
+	mMainSpring = new MainSpring;
+	mArborKey = new ArborKey;
 }
 
 CentralComplex::~CentralComplex() {
-	// TODO Auto-generated destructor stub
+	delete mHub;
+	delete mSpindle;
+	delete mMainSpring;
+	delete mArborKey;
+}
+
+void CentralComplex::sendActivity(Cable *cable) {
+	mHub->sendActivity(cable);
+	mSpindle->sendActivity(cable);
+	mMainSpring->sendActivity(cable);
 }
 
 } /* namespace becca */

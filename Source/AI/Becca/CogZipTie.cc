@@ -1,19 +1,15 @@
-#include "MainSpring.hh"
+#include "CogZipTie.hh"
 
 namespace ai {
 namespace becca {
 
-MainSpring::MainSpring() {
+CogZipTie::CogZipTie() {
 	// TODO Auto-generated constructor stub
 
 }
 
-MainSpring::~MainSpring() {
+CogZipTie::~CogZipTie() {
 	// TODO Auto-generated destructor stub
-}
-
-void MainSpring::sendActivity(Cable *cable) {
-
 }
 
 } /* namespace becca */

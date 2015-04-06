@@ -26,10 +26,12 @@ public:
 	output_id_t addOutput(int len);
 	void setInput(input_id_t id, data_t *data);
 	void getOutput(output_id_t id, data_t *data);
+
+	void iterate();
 private:
 	Becca *mBecca;
 
-	std::vector<GearBox *> mGearboxes;
+	std::vector<GearBox *> mGearBoxes;
 	std::vector<struct Input *> mInputs;
 };
 

@@ -12,5 +12,9 @@ Spindle::~Spindle() {
 	// TODO Auto-generated destructor stub
 }
 
+void Spindle::sendActivity(Cable *cable) {
+
+}
+
 } /* namespace becca */
 } /* namespace ai */

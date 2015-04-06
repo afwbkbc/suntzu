@@ -12,5 +12,9 @@ Hub::~Hub() {
 	// TODO Auto-generated destructor stub
 }
 
+void Hub::sendActivity(Cable *cable) {
+
+}
+
 } /* namespace becca */
 } /* namespace ai */

@@ -58,12 +58,15 @@ void Becca::getOutput(output_id_t id, data_t *data) {
 
 void Becca::iterate() {
 
-	printf("CABLE DATA:");
+	//printf("CABLE DATA:");
 	for (std::vector<becca::Cable *>::iterator it = mCables.begin() ; it != mCables.end() ; ++it) {
 		(*it)->iterate();
-		printf(" %2f", (*it)->getValue());
+		//printf(" %2f", (*it)->getValue());
+		mCentralComplex->sendActivity(*it);
 	}
-	printf("\n");
+	//printf("\n");
+
+	mDriveTrain->iterate();
 }
 
 void Becca::addCable(becca::Cable *cable) {

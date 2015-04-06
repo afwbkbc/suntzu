@@ -6,12 +6,15 @@ namespace ai {
 namespace becca {
 
 GearBox::GearBox() {
-	// TODO Auto-generated constructor stub
+
+	mZipTie = new ZipTie(this);
 
 }
 
 GearBox::~GearBox() {
-	// TODO Auto-generated destructor stub
+
+	delete mZipTie;
+
 }
 
 void GearBox::addCable(cable_direction_t direction, Cable *cable) {
@@ -34,6 +37,14 @@ void GearBox::addCable(cable_direction_t direction, Cable *cable) {
 	}
 	else
 		assert(false);
+}
+
+void GearBox::iterate() {
+
+
+	mZipTie->iterate();
+
+
 }
 
 } /* namespace becca */

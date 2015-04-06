@@ -14,11 +14,10 @@ DriveTrain::DriveTrain(Becca *becca) {
 
 DriveTrain::~DriveTrain() {
 
-	for (std::vector<struct Input *>::iterator it = mInputs.begin() ; it != mInputs.end() ; ++it) {
-		delete (*it)->gearBox;
+	for (std::vector<struct Input *>::iterator it = mInputs.begin() ; it != mInputs.end() ; ++it)
 		delete *it;
-	}
-	mInputs.clear();
+	for (std::vector<GearBox *>::iterator it = mGearBoxes.begin() ; it != mGearBoxes.end() ; ++it)
+		delete *it;
 
 }
 
@@ -33,6 +32,7 @@ input_id_t DriveTrain::addInput(int len) {
 		input->gearBox->addCable(GearBox::cable_direction_t::INPUT, cable);
 	}
 	mInputs.push_back(input);
+	mGearBoxes.push_back(input->gearBox);
 	return mInputs.size();
 }
 
@@ -50,6 +50,12 @@ void DriveTrain::setInput(input_id_t id, data_t *data) {
 
 void DriveTrain::getOutput(output_id_t id, data_t *data) {
 
+}
+
+void DriveTrain::iterate() {
+	for (std::vector<GearBox *>::iterator it = mGearBoxes.begin() ; it != mGearBoxes.end() ; ++it) {
+		(*it)->iterate();
+	}
 }
 
 } /* namespace becca */

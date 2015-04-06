@@ -1,19 +1,15 @@
-#include "MainSpring.hh"
+#include "CogDaisyChain.hh"
 
 namespace ai {
 namespace becca {
 
-MainSpring::MainSpring() {
+CogDaisyChain::CogDaisyChain() {
 	// TODO Auto-generated constructor stub
 
 }
 
-MainSpring::~MainSpring() {
+CogDaisyChain::~CogDaisyChain() {
 	// TODO Auto-generated destructor stub
-}
-
-void MainSpring::sendActivity(Cable *cable) {
-
 }
 
 } /* namespace becca */
